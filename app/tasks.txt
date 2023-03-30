@@ -1,0 +1,52 @@
+A 2022/23/2 félév Internetes Alkalmazásfejlesztés II. tárgyból beadandó feladat címe: Munkaerő nyilvántartó
+A feladat típusa: programozási feladat
+A feladat leírása:
+
+
+Munkaerő nyilvántartás
+
+
+
+Táblák
+  dolgozók (
+    név, 
+    munkakör kód, 
+    szerv.egység kód, 
+    bruttó bér, 
+    adóazonosító, 
+    TAJ, 
+    bankszámlaszám 
+      Check Digit Value Teszt
+      nem lesz titkositva
+  )
+  munkakörök
+  szervezeti egységek 
+****
+  A csillaggal jelölt adatok ellenőrzése, szintaktikai helyesség szempontjából (Google-> CDV) 
+
+
+Funkciók 
+  törlés sehol nem lehet lehetséges, ha élő adata van hozzá kapcsolódva
+  adatok 
+    felvitele/
+    módosítása/
+    törlése az összes táblában
+
+Feladatok
+  Táblatervek
+  Funkciók megvalósítása
+  Lekérdezések
+    dolgozók listája
+      név szerint
+      fizetés szerint
+      bankra csoportosítva (bankszámlaszám első 5 jegye)
+    szervezeti egységek
+      azon belül a dolgozói
+    módosítások naplozása 
+
+Plusz pontok járnak az alábbiakért
+  AJAX megoldás
+  Naplózás triggerrel
+  CSS 
+
+Beadási határidő: 2022. 05. 24.
