@@ -1,18 +1,18 @@
-<nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="collapse navbar-collapse" id="navbarColor01">
-    <ul class="navbar-nav">
-      <li class="nav-item">
+<nav id="nav" class="navbar">
+  <div class="container">
+    <div class="navbar-nav mx-auto">
+      <div class="nav-item">
         <a class="nav-link" href="/">Home</a>
-      </li>
-      <li class="nav-item">
+      </div>
+      <div class="nav-item">
         <a class="nav-link" href="/workforce">Dolgozók</a>
-      </li>
-      <li class="nav-item">
+      </div>
+      <div class="nav-item">
         <a class="nav-link" href="/departments">Szervezeti Egységek</a>
-      </li>
-      <li class="nav-item">
+      </div>
+      <div class="nav-item">
         <a class="nav-link" href="/positions">Munkakörök</a>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </nav>

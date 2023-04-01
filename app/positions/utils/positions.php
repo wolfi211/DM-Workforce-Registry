@@ -1,9 +1,9 @@
 <?php
-function getDepartments()
+function getPositions()
 {
   require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/dbconn.php';
 
-  $query = 'SELECT * FROM departments;';
+  $query = 'SELECT * FROM positions;';
 
   $statement = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($statement, $query)) {
@@ -23,11 +23,11 @@ function getDepartments()
   return $result;
 }
 
-function getDepartmentById($id)
+function getPositionById($id)
 {
   require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/dbconn.php';
 
-  $query = 'SELECT * FROM departments WHERE id=?;';
+  $query = 'SELECT * FROM positions WHERE id=?;';
 
   $statement = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($statement, $query)) {

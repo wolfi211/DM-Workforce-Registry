@@ -8,12 +8,20 @@ include_once './utils/departments.php';
 $departments = getDepartments();
 ?>
 
-<div class="container">
-  <?php
-  foreach ($departments as $department) {
-    echo '<div style="display:flex;"><span>' . $departmnet['id'] . '</span><span>' . $department['name'] . '</span></div>';
-  }
-  ?>
+<div class="fit-content mx-auto">
+  <a href="./create" class="button mx-auto">Create New</a>
+  <div style="display:grid; grid: max-content / max-content max-content max-content max-content; margin: 0px auto; width: fit-content;">
+    <?php
+    foreach ($departments as $department) {
+      echo '' .
+        '<span style="margin: 5px 10px;">' . $department['id'] . '</span>' .
+        '<span style="margin: 5px 10px;">' . $department['name'] . '</span>' .
+        '<form action="./modify/index.php" method="POST" style="margin: 3px 2px;"><input type="hidden" name="id" value="' . $department['id'] . '" /><button type="submit" class="button">Modify</button></form>' .
+        '<form action="./utils/remove.php" method="POST" style="margin: 3px 2px;"><input type="hidden" name="id" value="' . $department['id'] . '" /><button type="submit" class="button">Remove</button></form>' .
+        '';
+    }
+    ?>
+  </div>
 </div>
 
 <?php
