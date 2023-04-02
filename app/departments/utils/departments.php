@@ -1,8 +1,6 @@
 <?php
-function getDepartments()
+function getDepartments($conn)
 {
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/dbconn.php';
-
   $query = 'SELECT * FROM departments;';
 
   $statement = mysqli_stmt_init($conn);
@@ -23,7 +21,7 @@ function getDepartments()
   return $result;
 }
 
-function getDepartmentById($id)
+function getDepartmentById($conn, $id)
 {
   require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/dbconn.php';
 

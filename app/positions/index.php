@@ -3,9 +3,10 @@ include_once '../shared/header.php';
 ?>
 
 <?php
+include_once '../utils/dbconn.php';
 include_once './utils/positions.php';
 
-$positions = getPositions();
+$positions = getPositions($conn);
 ?>
 
 <div class="fitcontent">

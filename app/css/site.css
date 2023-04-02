@@ -59,9 +59,9 @@ a {
   margin-right: 0px;
 }
 
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .my-5 {
@@ -69,9 +69,28 @@ a {
   margin-bottom: 5px;
 }
 
+.my-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mx-5 {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .mx-10 {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.m-3 {
+  margin: 3px;
 }
 
 .m-10 {
@@ -107,6 +126,11 @@ a {
   border: none;
 }
 
+.group {
+  position: relative;
+  margin: 45px 0;
+}
+
 .form-input {
   background: none;
   background-color: white;
@@ -114,12 +138,33 @@ a {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
+  width: 100%;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid grey;
   margin: 25px 0;
-  width: 100%;
-  resize: none;
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+.form-input-label {
+  color: grey;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .fit-content {

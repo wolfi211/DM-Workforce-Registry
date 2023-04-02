@@ -1,7 +1,9 @@
 <?php
-function getPositions($conn)
+function getWorkers()
 {
-  $query = 'SELECT * FROM positions;';
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/dbconn.php';
+
+  $query = 'SELECT * FROM workers;';
 
   $statement = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($statement, $query)) {
@@ -21,11 +23,11 @@ function getPositions($conn)
   return $result;
 }
 
-function getPositionById($conn, $id)
+function getWorkerById($id)
 {
   require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/dbconn.php';
 
-  $query = 'SELECT * FROM positions WHERE id=?;';
+  $query = 'SELECT * FROM workers WHERE id=?;';
 
   $statement = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($statement, $query)) {

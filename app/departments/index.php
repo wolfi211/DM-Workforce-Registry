@@ -3,9 +3,10 @@ include_once '../shared/header.php';
 ?>
 
 <?php
+include_once '../utils/dbconn.php';
 include_once './utils/departments.php';
 
-$departments = getDepartments();
+$departments = getDepartments($conn);
 ?>
 
 <div class="fit-content mx-auto">
@@ -14,10 +15,10 @@ $departments = getDepartments();
     <?php
     foreach ($departments as $department) {
       echo '' .
-        '<span style="margin: 5px 10px;">' . $department['id'] . '</span>' .
-        '<span style="margin: 5px 10px;">' . $department['name'] . '</span>' .
-        '<form action="./modify/index.php" method="POST" style="margin: 3px 2px;"><input type="hidden" name="id" value="' . $department['id'] . '" /><button type="submit" class="button">Módosít</button></form>' .
-        '<form action="./utils/remove.php" method="POST" style="margin: 3px 2px;"><input type="hidden" name="id" value="' . $department['id'] . '" /><button type="submit" class="button">Töröl</button></form>' .
+        '<span class="mx-5 my-auto">' . $department['id'] . '</span>' .
+        '<span class="mx-5 my-auto">' . $department['name'] . '</span>' .
+        '<form action="./modify/index.php" method="POST" class="m-3"><input type="hidden" name="id" value="' . $department['id'] . '" /><button type="submit" class="button">Módosít</button></form>' .
+        '<form action="./utils/remove.php" method="POST" class="m-3"><input type="hidden" name="id" value="' . $department['id'] . '" /><button type="submit" class="button">Töröl</button></form>' .
         '';
     }
     ?>
