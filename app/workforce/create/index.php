@@ -12,12 +12,18 @@ $positions = getPositions($conn);
 
 <div class="container">
   <h2 class="mx-auto fit-content">Dolgozó létrehozása</h2>
-  <form name="create" action="../utils/create.php" method="POST" class="mx-auto" onsubmit="return validateForm()" style="width: 500px">
+  <form id="create" action="../utils/create.php" method="POST" class="mx-auto" onsubmit="return validateForm()" style="width: 500px">
+    <!-- NAME -->
     <input type="text" id="name" name="name" placeholder="Név" class="form-input mx-auto" required />
+    <!-- TAX ID -->
     <input type="number" name="taxid" placeholder="Adó Azonosító" class="form-input mx-auto" required />
+    <!-- SOCIAL SECURITY NUMBER -->
     <input type="number" name="socsec" placeholder="TAJ Szám" class="form-input mx-auto" required />
+    <!-- BANK -->
     <input id="bankacc" type="text" name="bankacc" placeholder="Bankszámla Szám" class="form-input mx-auto" required />
+    <!-- GROSS WAGE -->
     <input type="number" name="wage" placeholder="Bruttó Bér" class="form-input mx-auto" required />
+    <!-- POSITION -->
     <label class="form-input-label" for="position">Munkakör</label>
     <select id="position" name="position" class="form-input" style="margin-top: 5px;">
       <?php
@@ -26,6 +32,7 @@ $positions = getPositions($conn);
       }
       ?>
     </select>
+    <!-- DEPARTMENT -->
     <label class="form-input-label" for="department">Szervezeti Egység</label>
     <select name="department" class="form-input" style="margin-top: 5px;">
       <?php
@@ -34,38 +41,67 @@ $positions = getPositions($conn);
       }
       ?>
     </select>
+    <!-- SUBMIT -->
     <button type="submit" name="submit" class="button form-control">Rendben</button>
   </form>
 </div>
 
 <script>
-  /* function validateForm() {
-    let bank = document.forms["create"]["bankacc"].value.split("");
+  function validateForm() {
+    let bank = document.forms["create"]["bankacc"].value;
+    let regex = /(-*[0-9]{8}-*){2,3}/;
 
-    if (x == "") {
-      alert("Name must be filled out");
-      return false;
-    }
-  } */
-
-  const bankOnChange = () => {
-    let bank = document.forms["create"]["bankacc"];
-    alert(bank);
-    let regex = /^[0-9-]*$./;
     if (!bank.match(regex)) {
-      return false;
-    } else if (!bank.slice(-1).match(/^[0-9]*$./)) {
+      alert("A bankszámlaszám nem helyes");
       return false;
     }
-    let withoutdash = bank.map(char => {
-      if (char.match(/^[0-9]*$./)) return char;
-    })
-    if (count(withoutdash) % 8 == 0) {
-      document.forms["create"]["bankacc"].push("-");
-    }
-  };
+    let num = bank.replace(/-/g, "").split("");
 
-  document.forms["create"]["bankacc"].addEventListener("change", bankOnChange);
+    let odd = 0;
+    let even = 0;
+    let cdv = num.slice(-1);
+    num = num.slice(0, -2);
+    num.reverse().map((item, index) => (index % 2 === 0) ? odd += parseInt(item) : even += parseInt(item));
+    odd = odd * 3;
+    if (!((10 - ((odd + even) % 10)) % 10 == cdv)) {
+      alert("A bankszámlaszám nem helyes");
+      return false;
+    }
+    alert("sent");
+
+    return false;
+  }
+
+  /* document.forms["create"]["bankacc"].addEventListener("keydown", function bankOnChange(e) {
+    let bank = document.forms["create"]["bankacc"].value;
+    if (!(e.key.length > 2)) {
+      if (isNaN(e.key)) {
+        e.preventDefault();
+        return false;
+      }
+      let regex = /[0-9-]/;
+      if (bank.length >= 26) {
+        e.preventDefault();
+        return false;
+      }
+
+      let withoutdash = bank.replace(/-/g, "");
+      if ((withoutdash.length + 1) % 8 === 0 && bank.slice(-1) !== "-" && withoutdash.length !== 23) {
+        bank += e.key + "-";
+      } else if (!(e.key.length > 2)) {
+        bank += e.key;
+      }
+      document.forms["create"]["bankacc"].value = bank
+      e.preventDefault();
+      return false;
+    } else {
+      if (e.key === "Backspace" && bank.slice(-2).slice(0, 1) === "-") {
+        document.forms["create"]["bankacc"].value = document.forms["create"]["bankacc"].value.slice(0, -2);
+        e.preventDefault();
+        return false;
+      }
+    }
+  }); */
 </script>
 
 <?php
