@@ -7,46 +7,68 @@ Munkaerő nyilvántartás
 
 
 
-Táblák
-  dolgozók (
-    név, 
-    munkakör kód, 
-    szerv.egység kód, 
-    bruttó bér, 
-    adóazonosító, 
-    TAJ, 
-    bankszámlaszám 
-      Check Digit Value Teszt
-      nem lesz titkositva
+✅✅✅Táblák✅✅✅
+  ✅dolgozók (
+    név,              ♾️name
+    munkakör kód,     ♾️pos_id ♾️position ▶▶ munkakor
+    szerv.egység kód, ♾️dep_id ♾️department ▶▶ szervezeti egyseg
+    bruttó bér,       ♾️grosswage
+    adóazonosító,     ♾️taxid
+    TAJ,              ♾️ssn    ♾️social security number ▶▶ társadalombiztosítási azonosító jel
+    bankszámlaszám    ♾️ban    ♾️bank account number ▶▶ bankszámlaszám
+      ✅Check Digit Value Teszt
+      ♾️nem lesz titkositva, de ez igy nem tul production barat, a jogrol nem is beszelve, szerintem nem is szabadna nekunk ezt letarolni♾️♾️♾️
   )
-  munkakörök
-  szervezeti egységek 
+  ✅munkakörök        ♾️positions
+      ♾️megnevezes    ♾️name
+      ♾️munkakori leiras  ♾️description
+  ✅szervezeti egységek 
+      ♾️megnevezes    ♾️name
 ****
   A csillaggal jelölt adatok ellenőrzése, szintaktikai helyesség szempontjából (Google-> CDV) 
+  ♾️♾️♾️hat ez jol belevitt a malnasba, emlekeztess, hogy alaposan magyarazzam el♾️♾️♾️
+  ♾️♾️♾️az a baj, hogy ha rakeresel, hogy cdv, azt fogja kiadni, hogy check digit value/validation/verification
+  ♾️♾️♾️es a magyar bankszovetseg is ennek hivja, DEDEDEDE a vonalkodok vegen is CDV van, ami azert problemas
+  ♾️♾️♾️mert mashogy szamoljak a kettot, ha erdekel azt is elmondom, hogy a vonalkodot hogyan szamoljak
+  ♾️♾️♾️ide csak a bankosat irom le:
+  ♾️♾️♾️ketto lehetoseg van: xxxxxxxC-xxxxxxxC vagy xxxxxxxC-xxxxxxxx-xxxxxxxC (ketto vagy harom reszbol all a ban)
+  ♾️♾️♾️C-vel jeloltem a CDV helyet mind a ket esetben, es mind a ket esetben az elottuk levo szamokat igazoljak
+  ♾️♾️♾️a szamolasa: az elejerol kezdve veszed a szamokat egyesevel, es beszorzod oket rendre 9, 7, 3, 1 szamokkal
+  ♾️♾️♾️az osszeguk utolso szamjegyet kivonod 10-bol es megkapod a CDV erteket (vagyis a C-t az abran)
+  ♾️♾️♾️pl: 4997676C-6468189C
+  ♾️♾️♾️ 4x9+9x7+9x3+7x1+6x9+7x7+6x3 = 254 ▶▶ 4 ▶▶ 10-4 = 6
+  ♾️♾️♾️ es igy lesz a szam: 49976766-64681890
+  ♾️♾️♾️de csinaltam egy seged oldalt, ahol tudod oket szamoltatni, tesztelni, es generalni a semmibol teljes ban-okat algoritmussal
+  ♾️♾️♾️ "localhost/cdv"
 
 
-Funkciók 
-  törlés sehol nem lehet lehetséges, ha élő adata van hozzá kapcsolódva
-  adatok 
-    felvitele/
-    módosítása/
-    törlése az összes táblában
+✅✅✅Funkciók✅✅✅
+  ✅törlés sehol nem lehet lehetséges, ha élő adata van hozzá kapcsolódva
+  ✅adatok 
+    ✅felvitele/✅módosítása/✅törlése 
+    ✅az összes táblában
 
 Feladatok
-  Táblatervek
-  Funkciók megvalósítása
+  ✅Táblatervek
+  ✅Funkciók megvalósítása
   Lekérdezések
-    dolgozók listája
-      név szerint
-      fizetés szerint
-      bankra csoportosítva (bankszámlaszám első 5 jegye)
-    szervezeti egységek
-      azon belül a dolgozói
-    módosítások naplozása 
+    ✅dolgozók listája
+      ✅név szerint
+      ⏩fizetés szerint
+      ⏩bankra csoportosítva (bankszámlaszám első 5 jegye)
+      ♾️♾️♾️Ez a kijelentes csak szimplan nem igaz, a bankot az elso 7 szamjegy azonositja
+            ♾️♾️♾️ebbol az elso 3 magat a bankot
+            ♾️♾️♾️a kovetkezo 4 a fiokot ahol letre lett hozva a szamla
+            ♾️♾️♾️a 8. szamjegy pedig ellenorzo az elso 7 szamjegyre
+            ♾️♾️♾️EZ ALAPJAN FOGOK ELJARNI
+            ❗❗❗teljesen kulon oldalt hozok letre ra, amig a fizetes szerint csak modositom a query rendezettseget
+    ✅szervezeti egységek
+      ⏩azon belül a dolgozói
+    ⏩módosítások naplozása 
 
 Plusz pontok járnak az alábbiakért
-  AJAX megoldás
-  Naplózás triggerrel
-  CSS 
+  ❌❌❌AJAX megoldás       //nem
+  ❌❌❌Naplózás triggerrel //nem
+  ✅CSS
 
 Beadási határidő: 2022. 05. 24.

@@ -1,4 +1,9 @@
 <?php
+if (!isset($_POST["id"])) {
+  header("location: ../index.php");
+  exit();
+}
+
 include_once '../../shared/header.php';
 ?>
 
@@ -6,29 +11,33 @@ include_once '../../shared/header.php';
 include_once '../../utils/dbconn.php';
 include_once '../../departments/utils/departments.php';
 include_once '../../positions/utils/positions.php';
+include_once '../utils/workforce.php';
 $departments = getDepartments($conn);
 $positions = getPositions($conn);
+$id = $_POST["id"];
+$worker = getWorkerById($conn, $id);
 ?>
 
 <div class="container">
   <h2 class="mx-auto fit-content">Dolgozó létrehozása</h2>
-  <form name="create" action="../utils/create.php" method="POST" class="mx-auto" onsubmit="return validateForm()" style="width: 500px">
+  <form name="create" action="../utils/modify.php" method="POST" class="mx-auto" onsubmit="return validateForm()" style="width: 500px">
+    <input type="hidden" name="id" value=<?php echo $worker["id"] ?> />
     <!-- NAME -->
-    <input type="text" name="name" placeholder="Név" class="form-input mx-auto" required />
+    <input type="text" name="name" placeholder="Név" class="form-input mx-auto" value=<?php echo '"' . $worker["name"] . '"' ?> required />
     <!-- TAX ID -->
-    <input type="number" name="taxid" placeholder="Adó Azonosító" class="form-input mx-auto" required />
+    <input type="number" name="taxid" placeholder="Adó Azonosító" class="form-input mx-auto" value=<?php echo $worker["taxid"] ?> required />
     <!-- SOCIAL SECURITY NUMBER -->
-    <input type="number" name="ssn" placeholder="TAJ Szám" class="form-input mx-auto" required />
+    <input type="number" name="ssn" placeholder="TAJ Szám" class="form-input mx-auto" value=<?php echo $worker["ssn"] ?> required />
     <!-- BANK -->
-    <input type="text" name="ban" placeholder="Bankszámla Szám" class="form-input mx-auto" required />
+    <input type="text" name="ban" placeholder="Bankszámla Szám" class="form-input mx-auto" value=<?php echo $worker["ban"] ?> required />
     <!-- GROSS WAGE -->
-    <input type="number" name="wage" placeholder="Bruttó Bér" class="form-input mx-auto" required />
+    <input type="number" name="wage" placeholder="Bruttó Bér" class="form-input mx-auto" value=<?php echo $worker["grosswage"] ?> required />
     <!-- POSITION -->
     <label class="form-input-label" for="position">Munkakör</label>
     <select id="position" name="position" class="form-input" style="margin-top: 5px;">
       <?php
       foreach ($positions as $position) {
-        echo '<option value=' . $position["id"] . '>' . $position["name"] . '</option>';
+        echo '<option value=' . $position["id"] . ' ' . (($worker["pos_id"] == $position["id"]) ? 'selected' : '') . '>' . $position["name"] . '</option>';
       }
       ?>
     </select>
@@ -37,7 +46,7 @@ $positions = getPositions($conn);
     <select name="department" class="form-input" style="margin-top: 5px;">
       <?php
       foreach ($departments as $department) {
-        echo '<option value=' . $department["id"] . '>' . $department["name"] . '</option>';
+        echo '<option value=' . $department["id"] . ' ' . (($worker["dep_id"] == $department["id"]) ? 'selected' : '') . '>' . $department["name"] . '</option>';
       }
       ?>
     </select>

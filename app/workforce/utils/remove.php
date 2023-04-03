@@ -1,28 +1,26 @@
 <?php
-
 if (!isset($_POST["submit"])) {
   header('location: ../');
   exit();
 }
 
-$name = $_POST["name"];
-$description = $_POST["description"];
+$id = $_POST["id"];
 
 include_once '../../utils/dbconn.php';
 
-$query = 'INSERT INTO positions (name, description) VALUES (?, ?);';
+$query = 'DELETE FROM workers WHERE id = ?;';
 
 $statement = mysqli_stmt_init($conn);
 if (!mysqli_stmt_prepare($statement, $query)) {
   exit();
 }
 
-mysqli_stmt_bind_param($statement, "ss", $name, $description);
+mysqli_stmt_bind_param($statement, "i", $id);
 
 try {
   mysqli_stmt_execute($statement);
   if (mysqli_stmt_affected_rows($statement) === 0) {
-    throw new Exception("No data was added");
+    throw new Exception("No data was deleted");
   }
 } catch (Exception $error) {
   echo $error;
@@ -31,4 +29,4 @@ try {
   mysqli_stmt_close($statement);
 }
 
-header('location: ../index.php?msg=addsuccess');
+header('location: ../index.php?msg=delsuccess');

@@ -187,3 +187,13 @@ input[type="number"] {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1200px;
+}
+
+.box > * {
+  flex: 0 0 300px;
+}

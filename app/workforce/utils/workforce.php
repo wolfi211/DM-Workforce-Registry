@@ -1,9 +1,7 @@
 <?php
-function getWorkers()
+function getWorkers($conn)
 {
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/dbconn.php';
-
-  $query = 'SELECT * FROM workers;';
+  $query = 'SELECT * FROM workers ORDER BY name asc;';
 
   $statement = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($statement, $query)) {
@@ -23,10 +21,8 @@ function getWorkers()
   return $result;
 }
 
-function getWorkerById($id)
+function getWorkerById($conn, $id)
 {
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/dbconn.php';
-
   $query = 'SELECT * FROM workers WHERE id=?;';
 
   $statement = mysqli_stmt_init($conn);
