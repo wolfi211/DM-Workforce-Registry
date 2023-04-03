@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `workforce-register`.`workers` (
   `pos_id` INT NOT NULL,
   `dep_id` INT NOT NULL,
   `name` VARCHAR(255) NOT NULL,
-  `grosswage` INT NULL DEFAULT NULL,
+  `grosswage` INT NULL DEFAULT 0,
   `taxid` VARCHAR(10) NOT NULL,
   `socsecnum` VARCHAR(9) NOT NULL,
   `bankaccnum` VARCHAR(255) NULL DEFAULT NULL,

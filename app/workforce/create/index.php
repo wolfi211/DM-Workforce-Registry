@@ -12,13 +12,13 @@ $positions = getPositions($conn);
 
 <div class="container">
   <h2 class="mx-auto fit-content">Dolgozó létrehozása</h2>
-  <form action="../utils/create.php" method="POST" class="mx-auto" onsubmit="return validateForm()" style="width: 500px">
+  <form name="create" action="../utils/create.php" method="POST" class="mx-auto" onsubmit="return validateForm()" style="width: 500px">
     <!-- NAME -->
     <input type="text" name="name" placeholder="Név" class="form-input mx-auto" required />
     <!-- TAX ID -->
     <input type="number" name="taxid" placeholder="Adó Azonosító" class="form-input mx-auto" required />
     <!-- SOCIAL SECURITY NUMBER -->
-    <input type="number" name="socsec" placeholder="TAJ Szám" class="form-input mx-auto" required />
+    <input type="number" name="ssn" placeholder="TAJ Szám" class="form-input mx-auto" required />
     <!-- BANK -->
     <input type="text" name="bankacc" placeholder="Bankszámla Szám" class="form-input mx-auto" required />
     <!-- GROSS WAGE -->
@@ -47,9 +47,8 @@ $positions = getPositions($conn);
 </div>
 
 <script>
-  function validateForm() {
-    let bank = document.forms["create"]["bankacc"].value;
-    let regex = /(-*[0-9]{8}-*){2,3}/;
+  const validateBank = (bank) => {
+    let regex = /^(-*[0-9]{8}-*){2,3}$/;
 
     if (!bank.match(regex)) {
       alert("A bankszámlaszám nem helyes");
@@ -64,7 +63,55 @@ $positions = getPositions($conn);
     num.reverse().map((item, index) => (index % 2 === 0) ? odd += parseInt(item) : even += parseInt(item));
     odd = odd * 3;
     if (!((10 - ((odd + even) % 10)) % 10 == cdv)) {
+      return false;
+    }
+    return true;
+  };
+
+  const validateSocialSecurityNumber = (ssn) => {
+    if (ssn.length !== 9) {
+      return false;
+    }
+    return true;
+  }
+
+  const validateTaxId = (taxid) => {
+    if (ssn.length !== 10) {
+      return false;
+    }
+    return true;
+  }
+
+  const validateName = (name) => {
+    //dont even start me on this
+    //regex for names around europe with umlauts dots commas apostrophes and all the weird french nordic and slavic characters
+    let regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+
+    if (!name.match(regex)) {
+      return false;
+    }
+    return true;
+  }
+
+  function validateForm() {
+    let bank = document.forms["create"]["bankacc"].value;
+    let ssn = document.forms["create"]["ssn"].value;
+    let taxid = document.forms["create"]["taxid"].value;
+
+    if (validateBank(bank)) {
       alert("A bankszámlaszám nem helyes");
+      return false;
+    }
+    if (validateSocialSecurityNumber(ssn)) {
+      alert("A TAJ szám nem helyes");
+      return false;
+    }
+    if (validateTaxId(taxid)) {
+      alert("Az adóazonosító nem helyes");
+      return false;
+    }
+    if (validateName()) {
+      alert("A név nem tartalmazhat extra különleges karaktereket (pl.: $) és számokat");
       return false;
     }
     alert("sent");
