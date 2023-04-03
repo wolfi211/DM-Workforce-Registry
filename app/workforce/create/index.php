@@ -12,15 +12,15 @@ $positions = getPositions($conn);
 
 <div class="container">
   <h2 class="mx-auto fit-content">Dolgozó létrehozása</h2>
-  <form id="create" action="../utils/create.php" method="POST" class="mx-auto" onsubmit="return validateForm()" style="width: 500px">
+  <form action="../utils/create.php" method="POST" class="mx-auto" onsubmit="return validateForm()" style="width: 500px">
     <!-- NAME -->
-    <input type="text" id="name" name="name" placeholder="Név" class="form-input mx-auto" required />
+    <input type="text" name="name" placeholder="Név" class="form-input mx-auto" required />
     <!-- TAX ID -->
     <input type="number" name="taxid" placeholder="Adó Azonosító" class="form-input mx-auto" required />
     <!-- SOCIAL SECURITY NUMBER -->
     <input type="number" name="socsec" placeholder="TAJ Szám" class="form-input mx-auto" required />
     <!-- BANK -->
-    <input id="bankacc" type="text" name="bankacc" placeholder="Bankszámla Szám" class="form-input mx-auto" required />
+    <input type="text" name="bankacc" placeholder="Bankszámla Szám" class="form-input mx-auto" required />
     <!-- GROSS WAGE -->
     <input type="number" name="wage" placeholder="Bruttó Bér" class="form-input mx-auto" required />
     <!-- POSITION -->
@@ -71,37 +71,6 @@ $positions = getPositions($conn);
 
     return false;
   }
-
-  /* document.forms["create"]["bankacc"].addEventListener("keydown", function bankOnChange(e) {
-    let bank = document.forms["create"]["bankacc"].value;
-    if (!(e.key.length > 2)) {
-      if (isNaN(e.key)) {
-        e.preventDefault();
-        return false;
-      }
-      let regex = /[0-9-]/;
-      if (bank.length >= 26) {
-        e.preventDefault();
-        return false;
-      }
-
-      let withoutdash = bank.replace(/-/g, "");
-      if ((withoutdash.length + 1) % 8 === 0 && bank.slice(-1) !== "-" && withoutdash.length !== 23) {
-        bank += e.key + "-";
-      } else if (!(e.key.length > 2)) {
-        bank += e.key;
-      }
-      document.forms["create"]["bankacc"].value = bank
-      e.preventDefault();
-      return false;
-    } else {
-      if (e.key === "Backspace" && bank.slice(-2).slice(0, 1) === "-") {
-        document.forms["create"]["bankacc"].value = document.forms["create"]["bankacc"].value.slice(0, -2);
-        e.preventDefault();
-        return false;
-      }
-    }
-  }); */
 </script>
 
 <?php
