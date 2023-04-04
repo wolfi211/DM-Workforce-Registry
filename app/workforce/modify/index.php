@@ -25,13 +25,13 @@ $worker = getWorkerById($conn, $id);
     <!-- NAME -->
     <input type="text" name="name" placeholder="Név" class="form-input mx-auto" value=<?php echo '"' . $worker["name"] . '"' ?> required />
     <!-- TAX ID -->
-    <input type="number" name="taxid" placeholder="Adó Azonosító" class="form-input mx-auto" value=<?php echo $worker["taxid"] ?> required />
+    <input type="number" name="taxid" placeholder="Adó Azonosító" class="form-input mx-auto" value=<?php echo '"' . $worker["taxid"] . '"' ?> required />
     <!-- SOCIAL SECURITY NUMBER -->
-    <input type="number" name="ssn" placeholder="TAJ Szám" class="form-input mx-auto" value=<?php echo $worker["ssn"] ?> required />
+    <input type="number" name="ssn" placeholder="TAJ Szám" class="form-input mx-auto" value=<?php echo '"' . $worker["ssn"] . '"' ?> required />
     <!-- BANK -->
-    <input type="text" name="ban" placeholder="Bankszámla Szám" class="form-input mx-auto" value=<?php echo $worker["ban"] ?> required />
+    <input type="text" name="ban" placeholder="Bankszámla Szám" class="form-input mx-auto" value=<?php echo '"' . $worker["ban"] . '"' ?> required />
     <!-- GROSS WAGE -->
-    <input type="number" name="wage" placeholder="Bruttó Bér" class="form-input mx-auto" value=<?php echo $worker["grosswage"] ?> required />
+    <input type="number" name="wage" placeholder="Bruttó Bér" class="form-input mx-auto" value=<?php echo '"' . $worker["grosswage"] . '"' ?> required />
     <!-- POSITION -->
     <label class="form-input-label" for="position">Munkakör</label>
     <select id="position" name="position" class="form-input" style="margin-top: 5px;">

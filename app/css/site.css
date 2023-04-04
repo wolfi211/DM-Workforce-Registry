@@ -89,12 +89,33 @@ a {
   margin-right: 10px;
 }
 
+.mx-20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.m-0 {
+  margin: 0px;
+}
+
 .m-3 {
   margin: 3px;
 }
 
 .m-10 {
   margin: 10px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
 }
 
 .ta-justify {
@@ -143,7 +164,10 @@ a {
   border-radius: 0;
   border-bottom: 1px solid grey;
   margin: 25px 0;
-  resize: none;
+}
+
+textarea {
+  resize: none !important;
 }
 
 .form-input:focus {
@@ -163,11 +187,6 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-/* Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
 .fit-content {
   width: fit-content;
 }
@@ -182,6 +201,14 @@ input[type="number"] {
   width: 300px;
 }
 
+.card > hr {
+  width: 90%;
+}
+
+.card-item {
+  overflow: hidden;
+}
+
 .truncate {
   white-space: normal;
   overflow: hidden;
@@ -191,9 +218,38 @@ input[type="number"] {
 .box {
   display: flex;
   flex-wrap: wrap;
-  width: 1200px;
+  width: 1230px;
+  gap: 10px;
 }
 
 .box > * {
   flex: 0 0 300px;
+}
+
+.sorting {
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  gap: 8px;
+}
+
+.sorting > * {
+  flex: 1 1;
+}
+
+#depgrid {
+  display: grid;
+  grid: max-content / max-content max-content max-content max-content;
+}
+
+.w-500 {
+  width: 500px;
+}
+
+.h-40 {
+  height: 40px;
+}
+
+.h-60 {
+  height: 56px;
 }

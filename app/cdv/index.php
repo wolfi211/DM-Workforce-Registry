@@ -76,18 +76,39 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/shared/header.php';
     return (ban.match(rgx1) || ban.match(rgx2)) ? true : false;
   }
 
-  function generateSubBAN() {
-    ban = "";
-    for (let i = 0; i < 7; i++) {
-      ban += Math.floor(Math.random() * 10).toString();
+  function generateSubBAN(len = 8, bank = "") {
+    let ban = bank;
+    let start = bank.length;
+
+    for (let i = start; i < len - 1; i++) {
+      ban += getRandom(10).toString();
     }
     ban += getBanCdv(ban);
     return ban;
   }
 
   function generateBan() {
-    ban = generateSubBAN() + "-" + generateSubBAN();
+    return ((Math.random() < 0.75) ? generateShortBan() : generateLongBan());
+  }
+
+  function generateShortBan() {
+    ban = generateSubBAN(8, getRandomBank()) + "-" + generateSubBAN();
     return ban;
+  }
+
+  function generateLongBan() {
+    ban2 = generateSubBAN(16);
+    ban = generateSubBAN(8, getRandomBank()) + "-" + ban2.slice(0, 8) + "-" + ban2.slice(8);
+    return ban;
+  }
+
+  function getRandomBank() {
+    banks = ["107", "116", "109", "190", "117", "120"];
+    return banks[getRandom(6)];
+  }
+
+  function getRandom(max) {
+    return Math.floor(Math.random() * max);
   }
 </script>
 

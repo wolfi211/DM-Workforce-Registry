@@ -54,14 +54,13 @@ Feladatok
   Lekérdezések
     ✅dolgozók listája
       ✅név szerint
-      ⏩fizetés szerint
-      ⏩bankra csoportosítva (bankszámlaszám első 5 jegye)
+      ✅fizetés szerint
+      ✅bankra csoportosítva (bankszámlaszám első 5 jegye)
       ♾️♾️♾️Ez a kijelentes csak szimplan nem igaz, a bankot az elso 7 szamjegy azonositja
             ♾️♾️♾️ebbol az elso 3 magat a bankot
             ♾️♾️♾️a kovetkezo 4 a fiokot ahol letre lett hozva a szamla
             ♾️♾️♾️a 8. szamjegy pedig ellenorzo az elso 7 szamjegyre
-            ♾️♾️♾️EZ ALAPJAN FOGOK ELJARNI
-            ❗❗❗teljesen kulon oldalt hozok letre ra, amig a fizetes szerint csak modositom a query rendezettseget
+            ♾️♾️♾️EZ ALAPJAN JARTAM EL
     ✅szervezeti egységek
       ⏩azon belül a dolgozói
     ⏩módosítások naplozása 
