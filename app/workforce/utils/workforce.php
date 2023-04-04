@@ -44,3 +44,26 @@ function getWorkerById($conn, $id)
 
   return $result;
 }
+function getWorkersByDepId($conn, $id)
+{
+  $query = 'SELECT * FROM workers WHERE dep_id=?;';
+
+  $statement = mysqli_stmt_init($conn);
+  if (!mysqli_stmt_prepare($statement, $query)) {
+    exit();
+  }
+
+  mysqli_stmt_bind_param($statement, "i", $id);
+
+  try {
+    mysqli_stmt_execute($statement);
+    $result = mysqli_fetch_all(mysqli_stmt_get_result($statement), MYSQLI_ASSOC);
+  } catch (Exception $error) {
+    echo $error;
+    exit();
+  } finally {
+    mysqli_stmt_close($statement);
+  }
+
+  return $result;
+}

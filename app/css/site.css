@@ -237,9 +237,15 @@ input::-webkit-inner-spin-button {
   flex: 1 1;
 }
 
-#depgrid {
-  display: grid;
-  grid: max-content / max-content max-content max-content max-content;
+.dep-button-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+  gap: 8px;
+}
+
+.dep-button-container > * {
+  flex: 1 1;
 }
 
 .w-500 {
@@ -252,4 +258,9 @@ input::-webkit-inner-spin-button {
 
 .h-60 {
   height: 56px;
+}
+
+.border {
+  border: 2px solid #4285f4;
+  border-radius: 10px;
 }
