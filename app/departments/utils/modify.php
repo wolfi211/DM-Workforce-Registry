@@ -8,6 +8,7 @@ $id = $_POST["id"];
 $name = $_POST["name"];
 
 include_once '../../utils/dbconn.php';
+include_once '../../utils/flog.php';
 
 $query = 'UPDATE departments SET name = ? WHERE id = ?;';
 
@@ -21,10 +22,14 @@ mysqli_stmt_bind_param($statement, "si", $name, $id);
 try {
   mysqli_stmt_execute($statement);
   if (mysqli_stmt_affected_rows($statement) === 0) {
-    throw new Exception("No data was modified");
+    header('location: ../index.php?msg=moderror');
+    echo '<script>console.log("No rows were modified")</script>';
+    exit();
   }
+  flog("updated departments => " . $id . " to " . $name);
 } catch (Exception $error) {
-  echo $error;
+  header('location: ../index.php?msg=moderror');
+  echo '<script>console.log("Error during department update")</script>';
   exit();
 } finally {
   mysqli_stmt_close($statement);

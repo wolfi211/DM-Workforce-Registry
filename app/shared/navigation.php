@@ -2,9 +2,6 @@
   <div class="container">
     <div class="navbar-nav mx-auto">
       <div class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-      </div>
-      <div class="nav-item">
         <a class="nav-link" href="/workforce">Dolgozók</a>
       </div>
       <div class="nav-item">

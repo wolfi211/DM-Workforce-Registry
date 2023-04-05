@@ -95,12 +95,12 @@ if (isset($_GET["sort"]) && isset($_GET["direction"])) {
 
 <?php
 $prevbank = substr($workers[0]["ban"], 0, 3);
-if ($sort == "ban") {
+if (isset($sort) && $sort == "ban") {
   echo '<h2 class="ta-center">' . $banks[$prevbank] . '</h2>';
 }
 echo '<div class="box mx-auto">';
 foreach ($workers as $worker) {
-  if ($sort == "ban" && substr($worker["ban"], 0, 3) !== $prevbank) {
+  if (isset($sort) && $sort == "ban" && substr($worker["ban"], 0, 3) !== $prevbank) {
     $prevbank = substr($worker["ban"], 0, 3);
     echo '</div><hr />' . '<h2 class="ta-center">' . $banks[$prevbank] . '</h2>' . '<div class="box mx-auto">';
   }

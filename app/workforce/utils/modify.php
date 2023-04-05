@@ -15,6 +15,7 @@ $ban = $_POST["ban"];
 $wage = $_POST["wage"];
 
 include_once '../../utils/dbconn.php';
+include_once '../../utils/flog.php';
 
 $query = 'UPDATE workers SET pos_id = ?, dep_id = ?, name = ?, grosswage = ?, taxid = ?, ssn = ?, ban = ? WHERE id = ?;';
 
@@ -28,10 +29,14 @@ mysqli_stmt_bind_param($statement, "iisisssi", $pos_id, $dep_id, $name, $wage, $
 try {
   mysqli_stmt_execute($statement);
   if (mysqli_stmt_affected_rows($statement) === 0) {
-    throw new Exception("No data was modified");
+    header('location: ../index.php?msg=moderror');
+    echo '<script>console.log("No rows were modified")</script>';
+    exit();
   }
+  flog("updated workers => " . $id . " to " . $name);
 } catch (Exception $error) {
-  echo $error;
+  header('location: ../index.php?msg=moderror');
+  echo '<script>console.log("Error during worker update")</script>';
   exit();
 } finally {
   mysqli_stmt_close($statement);

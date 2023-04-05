@@ -7,6 +7,7 @@ if (!isset($_POST["id"])) {
 $id = $_POST["id"];
 
 include_once '../../utils/dbconn.php';
+include_once '../../utils/flog.php';
 
 $query = 'DELETE FROM departments WHERE id = ?;';
 
@@ -20,10 +21,14 @@ mysqli_stmt_bind_param($statement, "i", $id);
 try {
   mysqli_stmt_execute($statement);
   if (mysqli_stmt_affected_rows($statement) === 0) {
-    throw new Exception("No data was deleted");
+    header('location: ../index.php?msg=delerror');
+    echo '<script>console.log("No rows were removed")</script>';
+    exit();
   }
+  flog("removed department => " . $id);
 } catch (Exception $error) {
-  echo $error;
+  header('location: ../index.php?msg=delerror');
+  echo '<script>console.log("Error during department remove")</script>';
   exit();
 } finally {
   mysqli_stmt_close($statement);
