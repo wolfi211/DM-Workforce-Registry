@@ -63,7 +63,7 @@ $worker = getWorkerById($conn, $id);
     let name = document.forms["create"]["name"].value;
 
     if (!validateBank(ban)) {
-      alert("A bankszámlaszám nem helyes");
+      //alert("A bankszámlaszám nem helyes");
       return false;
     }
     if (!validateSSN(ssn)) {

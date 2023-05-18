@@ -2,7 +2,7 @@
 
 function flog($msg)
 {
-  $filename = "../logs/" . date("Y-m-d") . ".log";
+  $filename = "/var/www/html/logs/" . date("Y-m-d") . ".log";
   $head = date("H:i :: ");
   $msg = $msg . "\n";
 

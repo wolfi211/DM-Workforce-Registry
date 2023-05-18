@@ -8,6 +8,7 @@ include_once '../../departments/utils/departments.php';
 include_once '../../positions/utils/positions.php';
 $departments = getDepartments($conn);
 $positions = getPositions($conn);
+$_
 ?>
 
 <div class="container">
@@ -54,7 +55,7 @@ $positions = getPositions($conn);
     let name = document.forms["create"]["name"].value;
 
     if (!validateBank(ban)) {
-      alert("A bankszámlaszám nem helyes");
+      //alert("A bankszámlaszám nem helyes");
       return false;
     }
     if (!validateSSN(ssn)) {
@@ -69,6 +70,7 @@ $positions = getPositions($conn);
       alert("A név nem tartalmazhat extra különleges karaktereket (pl.: $) és számokat");
       return false;
     }
+
   }
 
   function validateBank(value) {
